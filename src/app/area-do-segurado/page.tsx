@@ -22,7 +22,7 @@ export default function AreaDoSeguradoPage() {
         aria-hidden
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16">
+      <div className="relative mx-auto max-w-[56rem] px-4 py-12 md:px-6 md:py-16">
         <div className="fade-up mb-8">
           <BackNav href="/" label="Voltar para o início" />
         </div>
@@ -32,10 +32,10 @@ export default function AreaDoSeguradoPage() {
             Serviços autenticados
           </p>
           <div className="mt-4 h-1 w-14 origin-left rounded-full bg-accent accent-bar" />
-          <h1 className="mt-5 font-display text-4xl font-semibold text-primary md:text-5xl">
+          <h1 className="mt-5 font-display text-3xl font-semibold text-primary sm:text-4xl lg:text-[2rem]">
             Área do Segurado
           </h1>
-          <p className="mt-5 text-lg leading-relaxed text-muted">
+          <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg lg:text-base">
             Holerite, protocolos, simulações e demais funções pessoais ficam no{" "}
             <strong className="font-semibold text-ink">{systemName}</strong>, um sistema separado
             deste portal. Aqui você encontra o caminho seguro de acesso — sem enviar senha neste

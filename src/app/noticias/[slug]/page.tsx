@@ -28,19 +28,19 @@ export default async function NoticiaPage({ params }: Props) {
   const related = listNews(4).filter((n) => n.slug !== item.slug).slice(0, 2);
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-10 md:px-6 md:py-16">
+    <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:py-12">
       <div className="flex flex-wrap gap-3">
         <BackNav href="/noticias" label="Voltar para as notícias" />
         <BackNav href="/" label="Voltar para o início" />
       </div>
 
-      <p className="mt-10 text-sm font-semibold uppercase tracking-wider text-accent">
+      <p className="mt-8 text-sm font-semibold uppercase tracking-wider text-accent">
         {item.category} · {formatDate(item.published_at)}
       </p>
-      <h1 className="mt-3 font-display text-4xl font-semibold leading-tight text-primary text-balance">
+      <h1 className="mt-3 font-display text-3xl font-semibold leading-tight text-primary text-balance sm:text-4xl lg:text-[1.85rem]">
         {item.title}
       </h1>
-      <div className="mt-8 space-y-5 text-lg leading-relaxed text-muted">
+      <div className="mt-6 space-y-4 text-base leading-relaxed text-muted sm:text-lg lg:text-base">
         {item.body.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}

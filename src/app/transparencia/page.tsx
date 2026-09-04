@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { PageEndNav } from "@/components/PageEndNav";
 import { PageHero } from "@/components/PageHero";
 import { formatDate, listTransparencyDocs } from "@/lib/content";
@@ -20,7 +20,7 @@ export default function TransparenciaPage() {
         description="Demonstrativos obrigatórios do RPPS, finanças, governança e documentos públicos do Iprevicon. Dados públicos — sem necessidade de login."
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6">
+      <section className="mx-auto max-w-[56rem] px-4 py-16 md:px-6">
         <p className="max-w-3xl text-lg text-muted">
           Em conformidade com a legislação dos Regimes Próprios e com a Lei de Acesso à Informação,
           disponibilizamos os principais instrumentos de prestação de contas. Os registros vêm do

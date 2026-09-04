@@ -80,14 +80,14 @@ export function NewsCarousel({ news }: NewsCarouselProps) {
       >
         <article
           key={item.slug}
-          className="news-slide relative border-t-[3px] border-accent bg-cream px-5 py-8 md:px-10 md:py-10"
+          className="news-slide relative border-t-[3px] border-accent bg-cream px-5 py-7 sm:px-8 lg:px-8 lg:py-8"
           aria-live="polite"
           aria-atomic="true"
         >
           <p className="text-sm font-semibold uppercase tracking-wider text-accent">
             {item.category} · {formatDate(item.published_at)}
           </p>
-          <h3 className="mt-4 max-w-3xl font-display text-2xl font-semibold text-primary md:text-3xl lg:text-4xl">
+          <h3 className="mt-3 max-w-3xl font-display text-2xl font-semibold text-primary lg:text-[1.65rem]">
             <Link
               href={`/noticias/${item.slug}`}
               className="transition-colors hover:text-secondary"
@@ -95,12 +95,12 @@ export function NewsCarousel({ news }: NewsCarouselProps) {
               {item.title}
             </Link>
           </h3>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
+          <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted sm:text-lg lg:text-base">
             {item.excerpt}
           </p>
           <Link
             href={`/noticias/${item.slug}`}
-            className="mt-8 inline-flex min-h-12 items-center rounded-full bg-primary px-6 py-3 text-base font-semibold text-cream transition hover:bg-secondary"
+            className="mt-6 inline-flex min-h-12 items-center rounded-full bg-primary px-5 py-2.5 text-base font-semibold text-cream transition hover:bg-secondary lg:min-h-10 lg:text-sm"
           >
             Ler notícia completa
           </Link>

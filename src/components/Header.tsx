@@ -149,13 +149,13 @@ export default function Header() {
         <div className="pointer-events-none absolute inset-0 z-0 site-header-wash" aria-hidden />
 
         <div
-          className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 transition-[padding] duration-300 sm:gap-3 md:px-6 ${
-            scrolled ? "py-2 md:py-3" : "py-2.5 md:py-4"
+          className={`relative z-10 mx-auto flex max-w-[56rem] items-center justify-between gap-2 px-4 transition-[padding] duration-300 sm:gap-3 sm:px-6 ${
+            scrolled ? "py-2 lg:py-2" : "py-2.5 lg:py-2.5"
           }`}
         >
           <Link
             href="/"
-            className="group flex min-h-11 shrink-0 items-center rounded-2xl sm:min-h-12"
+            className="group flex min-h-11 shrink-0 items-center rounded-2xl"
             aria-label="Iprevicon — ir para o início"
           >
             <LogoMark
@@ -166,7 +166,7 @@ export default function Header() {
           </Link>
 
           <nav
-            className="site-nav-island hidden min-w-0 items-center gap-1 overflow-x-auto rounded-full border border-primary/10 bg-white/90 p-1.5 shadow-[0_8px_28px_rgba(9,68,94,0.08)] lg:flex"
+            className="site-nav-island hidden min-w-0 items-center gap-0.5 overflow-x-auto rounded-full border border-primary/10 bg-white/90 p-1 shadow-[0_8px_28px_rgba(9,68,94,0.08)] lg:flex"
             aria-label="Principal"
           >
             {navItems.map((item) => (
@@ -193,7 +193,7 @@ export default function Header() {
 
             <Link
               href="/area-do-segurado"
-              className="btn-glow hidden min-h-11 items-center rounded-full bg-accent px-5 py-2.5 text-base font-semibold text-white shadow-sm lg:inline-flex"
+              className="btn-glow hidden min-h-10 items-center rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white shadow-sm lg:inline-flex"
             >
               Área do Segurado
             </Link>

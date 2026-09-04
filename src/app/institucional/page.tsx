@@ -100,10 +100,10 @@ export default function InstitucionalPage() {
         cta={{ href: "/transparencia", label: "Ver transparência" }}
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
+      <section className="mx-auto max-w-[56rem] px-4 py-16 md:px-6 lg:py-12">
         <Reveal className="max-w-3xl">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">O Instituto</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-primary md:text-4xl">
+          <h2 className="mt-3 font-display text-3xl font-semibold text-primary lg:text-[1.75rem]">
             Por que o Iprevicon existe
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted">
@@ -120,14 +120,14 @@ export default function InstitucionalPage() {
 
         <div className="mt-14 grid gap-10 border-t border-primary/10 pt-12 md:grid-cols-2">
           <Reveal>
-            <h3 className="font-display text-2xl font-semibold text-primary md:text-3xl">Missão</h3>
+            <h3 className="font-display text-2xl font-semibold text-primary lg:text-xl">Missão</h3>
             <p className="mt-4 text-lg leading-relaxed text-muted">
               Assegurar a proteção previdenciária dos servidores públicos municipais e de seus
               dependentes, com gestão técnica, ética e transparente dos recursos do RPPS.
             </p>
           </Reveal>
           <Reveal>
-            <h3 className="font-display text-2xl font-semibold text-primary md:text-3xl">Visão</h3>
+            <h3 className="font-display text-2xl font-semibold text-primary lg:text-xl">Visão</h3>
             <p className="mt-4 text-lg leading-relaxed text-muted">
               Ser referência em acolhimento e solidez institucional, aproximando a previdência
               municipal de quem depende dela no dia a dia — com informação clara e canais acessíveis.
@@ -136,11 +136,11 @@ export default function InstitucionalPage() {
         </div>
       </section>
 
-      <section className="border-y border-primary/10 bg-cream-muted/60 py-16 md:py-20">
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
+      <section className="border-y border-primary/10 bg-cream-muted/60 py-16 lg:py-12">
+        <div className="mx-auto max-w-[56rem] px-4 md:px-6">
           <Reveal className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">Valores</p>
-            <h2 className="mt-3 font-display text-3xl font-semibold text-primary md:text-4xl">
+            <h2 className="mt-3 font-display text-3xl font-semibold text-primary lg:text-[1.75rem]">
               O que orienta a nossa atuação
             </h2>
           </Reveal>
@@ -157,10 +157,10 @@ export default function InstitucionalPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
+      <section className="mx-auto max-w-[56rem] px-4 py-16 md:px-6 lg:py-12">
         <Reveal className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">Público</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-primary md:text-4xl">
+          <h2 className="mt-3 font-display text-3xl font-semibold text-primary lg:text-[1.75rem]">
             Para quem o Instituto trabalha
           </h2>
           <p className="mt-4 text-lg text-muted">
@@ -179,14 +179,14 @@ export default function InstitucionalPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-primary py-16 text-cream md:py-20">
+      <section className="relative overflow-hidden bg-primary py-16 text-cream lg:py-12">
         <div className="pointer-events-none absolute inset-0 surface-noise" aria-hidden />
-        <div className="relative mx-auto max-w-6xl px-4 md:px-6">
+        <div className="relative mx-auto max-w-[56rem] px-4 md:px-6">
           <Reveal className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-soft">
               Governança
             </p>
-            <h2 className="mt-3 font-display text-3xl font-semibold md:text-4xl">
+            <h2 className="mt-3 font-display text-3xl font-semibold lg:text-[1.75rem]">
               Estrutura que sustenta o RPPS
             </h2>
             <p className="mt-4 text-lg text-cream/90">
@@ -211,10 +211,10 @@ export default function InstitucionalPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
+      <section className="mx-auto max-w-[56rem] px-4 py-16 md:px-6 lg:py-12">
         <Reveal className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">Acesso rápido</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-primary md:text-4xl">
+          <h2 className="mt-3 font-display text-3xl font-semibold text-primary lg:text-[1.75rem]">
             Serviços e informações públicas
           </h2>
           <p className="mt-4 text-lg text-muted">

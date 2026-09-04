@@ -9,7 +9,7 @@ const Header = dynamic(() => import("@/components/Header"), {
   ssr: true,
   loading: () => (
     <header
-      className="sticky top-0 z-50 h-[5.5rem] border-b border-primary/10"
+      className="sticky top-0 z-50 h-16 border-b border-primary/10"
       style={{ backgroundColor: "#fffbf7" }}
       aria-hidden
     />

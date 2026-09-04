@@ -18,14 +18,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* Celular — mantém o tamanho atual (excelente) */
+    /* Celular: tipografia confortável (já aprovada) */
     font-size: 17px;
   }
 
-  /* Computador: ~80% da escala anterior (era 18px) */
   @media (min-width: 1024px) {
     html {
-      font-size: 14.4px;
+      /* Desktop: base padrão do browser — tamanhos vêm das classes, não de escala */
+      font-size: 16px;
     }
   }
 
@@ -124,7 +124,7 @@
   }
 
   .site-nav-link {
-    @apply relative inline-flex min-h-10 items-center rounded-full px-3.5 text-sm font-semibold transition-colors duration-300;
+    @apply relative inline-flex min-h-9 items-center rounded-full px-3 text-[0.8125rem] font-semibold transition-colors duration-300 lg:min-h-9;
   }
 
   .site-nav-link:not(.on-dark) {

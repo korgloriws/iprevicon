@@ -16,9 +16,9 @@ const sizes = {
   sm: "h-12 w-12",
   md: "h-14 w-14",
   /** Compacta no celular; cresce no tablet/desktop */
-  header: "h-12 w-12 sm:h-14 sm:w-14 md:h-[4.75rem] md:w-[4.75rem] lg:h-[5.25rem] lg:w-[5.25rem]",
-  lg: "h-[4.5rem] w-[4.5rem] md:h-24 md:w-24",
-  xl: "h-24 w-24 md:h-28 md:w-28",
+  header: "h-12 w-12 sm:h-[3.25rem] sm:w-[3.25rem] lg:h-14 lg:w-14",
+  lg: "h-16 w-16 md:h-20 md:w-20",
+  xl: "h-20 w-20 md:h-24 md:w-24",
 };
 
 /** Momento (ms) em que cada peça começa a aparecer */

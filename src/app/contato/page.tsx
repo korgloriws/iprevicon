@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { PageEndNav } from "@/components/PageEndNav";
 import { PageHero } from "@/components/PageHero";
 
@@ -15,7 +15,7 @@ export default function ContatoPage() {
         description="Fale com o Iprevicon, registre manifestações na Ouvidoria ou solicite informações pelo Serviço de Informação ao Cidadão."
       />
 
-      <section className="mx-auto grid max-w-6xl gap-12 px-4 py-16 md:grid-cols-2 md:px-6">
+      <section className="mx-auto grid max-w-[56rem] gap-12 px-4 py-16 md:grid-cols-2 md:px-6">
         <div className="space-y-8">
           <div>
             <h2 className="font-display text-2xl font-semibold text-primary">Sede</h2>

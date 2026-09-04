@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { PageEndNav } from "@/components/PageEndNav";
 import { PageHero } from "@/components/PageHero";
 import { listLegislation } from "@/lib/content";
@@ -20,7 +20,7 @@ export default function LegislacaoPage() {
         description="Principais referências legais do Regime Próprio de Previdência Social e normas internas do Iprevicon."
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6">
+      <section className="mx-auto max-w-[56rem] px-4 py-16 md:px-6">
         <div className="space-y-6">
           {laws.map((law) => (
             <article key={law.id} className="border-t border-primary/10 pt-6">
