@@ -1,0 +1,50 @@
+# Portal Iprevicon — VPS Hostinger (São Paulo)
+# URL pública: http://31.97.167.75:3090
+#
+# Uso na VPS:
+#   cp .env.example .env   # edite SEGURADO_SYSTEM_URL se tiver
+#   docker compose up -d --build
+#   docker compose logs -f portal
+
+name: portal-iprevicon
+
+services:
+  portal:
+    container_name: portal-iprevicon
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      # Host 3090 → container 3000 (não conflita com Nerteus :3000 e demais apps)
+      - "3090:3000"
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: "0.0.0.0"
+      NODE_OPTIONS: --max-old-space-size=256
+      SEGURADO_SYSTEM_URL: ${SEGURADO_SYSTEM_URL:-}
+      SEGURADO_SYSTEM_NAME: ${SEGURADO_SYSTEM_NAME:-Sistema do Segurado}
+    volumes:
+      # Persistência do SQLite (notícias, docs, legislação, settings)
+      - ./data:/app/data
+    restart: unless-stopped
+    # VPS KVM 2 (8 GB) compartilhada com vários containers — limite modesto
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 128M
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 25s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
