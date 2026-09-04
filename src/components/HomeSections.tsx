@@ -32,7 +32,7 @@ export function HomeHero() {
         <p className="fade-up-delay-1 mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-accent-soft">
           Iprevicon
         </p>
-        <h1 className="fade-up-delay-2 mt-3 max-w-4xl font-display text-3xl font-semibold leading-tight tracking-tight text-cream text-balance sm:text-4xl md:text-5xl lg:text-6xl">
+        <h1 className="fade-up-delay-2 mt-3 max-w-4xl font-display text-3xl font-semibold leading-tight tracking-tight text-cream text-balance sm:text-4xl lg:text-5xl">
           Instituto de Previdência de Contagem
         </h1>
         <p className="fade-up-delay-3 mt-5 max-w-2xl text-lg leading-relaxed text-cream/90 md:text-xl">
