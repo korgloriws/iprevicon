@@ -58,3 +58,9 @@ docker compose up -d --build
 ## Identidade
 
 - Brandbook + logo em `public/logo/iprevicon.svg`
+
+## Apresentação para a equipe
+
+Documento visual (abrir no navegador; pode salvar em PDF):
+
+`docs/apresentacao-portal-iprevicon.html`

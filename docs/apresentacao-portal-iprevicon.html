@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portal Iprevicon — Apresentação Institucional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #09445e;
+        --primary-deep: #063447;
+        --secondary: #01577a;
+        --accent: #d96c00;
+        --accent-soft: #e67800;
+        --cream: #fffbf7;
+        --cream-muted: #f0e8df;
+        --ink: #062836;
+        --muted: #334e5a;
+        --line: rgba(9, 68, 94, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Montserrat", sans-serif;
+        color: var(--ink);
+        background: var(--cream);
+        line-height: 1.65;
+        font-size: 1.05rem;
+      }
+
+      h1,
+      h2,
+      h3,
+      .display {
+        font-family: "Anek Devanagari", sans-serif;
+        font-weight: 600;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      a {
+        color: var(--secondary);
+      }
+
+      .skip {
+        position: absolute;
+        left: -9999px;
+      }
+
+      .skip:focus {
+        left: 1rem;
+        top: 1rem;
+        z-index: 10;
+        background: var(--accent);
+        color: white;
+        padding: 0.75rem 1rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      /* —— Capa —— */
+      .cover {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 2.5rem 1.5rem 3rem;
+        color: var(--cream);
+        background:
+          radial-gradient(ellipse 70% 50% at 90% 10%, rgba(230, 120, 0, 0.35), transparent 55%),
+          radial-gradient(ellipse 50% 40% at 10% 85%, rgba(1, 87, 122, 0.5), transparent 50%),
+          linear-gradient(145deg, #09445e 0%, #01577a 48%, #063447 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cover::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(6, 52, 71, 0.55), transparent 45%);
+        pointer-events: none;
+      }
+
+      .cover-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 44rem;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent-soft);
+        margin: 0 0 1rem;
+      }
+
+      .cover h1 {
+        font-size: clamp(2.1rem, 5vw, 3.4rem);
+        margin: 0 0 0.85rem;
+        max-width: 18ch;
+      }
+
+      .cover .lead {
+        font-size: 1.125rem;
+        color: rgba(255, 251, 247, 0.92);
+        max-width: 36rem;
+        margin: 0 0 2rem;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        color: rgba(255, 251, 247, 0.78);
+        border-top: 1px solid rgba(255, 251, 247, 0.2);
+        padding-top: 1.25rem;
+      }
+
+      .accent-bar {
+        width: 3.5rem;
+        height: 3px;
+        background: var(--accent);
+        border-radius: 999px;
+        margin-bottom: 1.25rem;
+      }
+
+      /* —— Layout —— */
+      .wrap {
+        max-width: 44rem;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      section {
+        padding: 3.25rem 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      section:last-of-type {
+        border-bottom: none;
+      }
+
+      section h2 {
+        font-size: clamp(1.65rem, 3vw, 2rem);
+        color: var(--primary);
+        margin: 0 0 0.75rem;
+      }
+
+      section h3 {
+        font-size: 1.2rem;
+        color: var(--primary);
+        margin: 1.75rem 0 0.5rem;
+      }
+
+      section p,
+      section li {
+        color: var(--muted);
+      }
+
+      section p {
+        margin: 0 0 1rem;
+      }
+
+      section ul {
+        margin: 0 0 1rem;
+        padding-left: 1.15rem;
+      }
+
+      section li {
+        margin-bottom: 0.45rem;
+      }
+
+      .intro-note {
+        background: var(--cream-muted);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.15rem;
+        border-radius: 0 0.75rem 0.75rem 0;
+        margin: 1.25rem 0 0;
+      }
+
+      .intro-note p {
+        margin: 0;
+        color: var(--ink);
+      }
+
+      /* Cards / grades */
+      .grid {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      @media (min-width: 700px) {
+        .grid.two {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .card {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: 1.15rem 1.25rem;
+      }
+
+      .card strong {
+        display: block;
+        font-family: "Anek Devanagari", sans-serif;
+        font-size: 1.15rem;
+        color: var(--primary);
+        margin-bottom: 0.35rem;
+      }
+
+      .card p {
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0 0;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: white;
+        padding: 0.4rem 0.85rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--primary);
+      }
+
+      .steps {
+        counter-reset: step;
+        list-style: none;
+        padding: 0;
+        margin: 1.25rem 0 0;
+      }
+
+      .steps li {
+        position: relative;
+        padding: 0.85rem 0 0.85rem 3.25rem;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+      }
+
+      .steps li::before {
+        counter-increment: step;
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 0.85rem;
+        width: 2.1rem;
+        height: 2.1rem;
+        border-radius: 999px;
+        background: var(--primary);
+        color: var(--cream);
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: grid;
+        place-items: center;
+      }
+
+      .url-box {
+        margin-top: 1.25rem;
+        background: var(--primary);
+        color: var(--cream);
+        border-radius: 1rem;
+        padding: 1.25rem 1.35rem;
+      }
+
+      .url-box p {
+        margin: 0 0 0.35rem;
+        color: rgba(255, 251, 247, 0.8);
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .url-box a {
+        color: white;
+        font-size: 1.15rem;
+        font-weight: 700;
+        word-break: break-all;
+      }
+
+      footer.doc-foot {
+        background: var(--primary-deep);
+        color: rgba(255, 251, 247, 0.85);
+        padding: 2rem 1.5rem 2.5rem;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+
+      footer.doc-foot strong {
+        color: white;
+      }
+
+      .print-hint {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-top: 0.5rem;
+      }
+
+      @media print {
+        .cover {
+          min-height: auto;
+          padding: 2rem 1.5rem;
+          break-after: page;
+        }
+
+        section {
+          padding: 1.5rem 0;
+          break-inside: avoid;
+        }
+
+        .print-hint {
+          display: none;
+        }
+
+        a {
+          text-decoration: none;
+          color: var(--primary);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+
+    <header class="cover">
+      <div class="cover-inner">
+        <p class="eyebrow">Instituto de Previdência de Contagem</p>
+        <div class="accent-bar" aria-hidden="true"></div>
+        <h1>Portal institucional Iprevicon</h1>
+        <p class="lead">
+          Apresentação do novo portal público: o que foi feito, por que foi feito desta forma e o
+          que vem a seguir — em linguagem clara, para toda a equipe.
+        </p>
+        <div class="meta">
+          <span>Documento de apresentação</span>
+          <span>Setembro de 2026</span>
+          <span>Uso interno e alinhamento institucional</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <div class="wrap">
+        <section>
+          <h2>1. Para que serve este portal?</h2>
+          <p>
+            O portal é a <strong>vitrine oficial na internet</strong> do Iprevicon. Ele concentra
+            informações públicas do Regime Próprio de Previdência Social (RPPS) de Contagem:
+            institucional, serviços, transparência, notícias, legislação e canais de contato.
+          </p>
+          <p>
+            Ele <strong>não substitui</strong> o sistema em que o segurado consulta holerite,
+            abre protocolos ou faz simulações. Esse sistema continua separado; o portal apenas
+            leva a pessoa até ele de forma segura e clara (Área do Segurado).
+          </p>
+          <div class="intro-note">
+            <p>
+              Em resumo: o portal informa e orienta o cidadão; a Área do Segurado autentica e
+              executa os serviços pessoais.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>2. Objetivos que orientaram o projeto</h2>
+          <div class="grid two">
+            <div class="card">
+              <strong>Clareza para o público</strong>
+              <p>
+                Textos diretos, caminhos curtos e visual alinhado à identidade oficial do
+                Instituto — sem parecer um “site genérico”.
+              </p>
+            </div>
+            <div class="card">
+              <strong>Uso no celular</strong>
+              <p>
+                A maior parte dos acessos hoje é pelo telefone. O menu e os botões foram pensados
+                primeiro para a tela pequena e depois refinados no computador.
+              </p>
+            </div>
+            <div class="card">
+              <strong>Transparência e confiança</strong>
+              <p>
+                Documentos, notícias e legislação ficam organizados de forma pública, com linguagem
+                institucional e previsível.
+              </p>
+            </div>
+            <div class="card">
+              <strong>Crescimento sem recomeçar</strong>
+              <p>
+                A base já prevê publicações futuras (notícias e documentos) e a ligação com o
+                sistema do segurado, sem precisar refazer o portal.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>3. Por que fizemos do jeito que fizemos</h2>
+          <h3>Um só site, responsivo</h3>
+          <p>
+            Em vez de criar um “site para computador” e outro “para celular”, construímos
+            <strong>uma única experiência</strong> que se adapta. Isso reduz manutenção, evita
+            conteúdo divergente e garante que a marca seja a mesma em qualquer aparelho.
+          </p>
+
+          <h3>Menu no celular, sem barra duplicada</h3>
+          <p>
+            Testamos uma barra de botões fixa na parte de baixo da tela. Ela repetia o que o menu
+            já fazia, ocupava espaço útil e confundia. A solução adotada:
+          </p>
+          <ul>
+            <li>no celular, o cabeçalho mostra o botão <strong>Menu</strong>;</li>
+            <li>dentro do menu estão todas as páginas + o destaque <strong>Área do Segurado</strong>;</li>
+            <li>no computador, a navegação fica na barra superior, com o botão da Área do Segurado à vista.</li>
+          </ul>
+
+          <h3>Tamanhos pensados para cada tela</h3>
+          <p>
+            No celular o portal ficou com tipografia e botões generosos (mais fáceis de tocar). No
+            computador reduzimos títulos, espaçamentos e a largura da coluna de conteúdo para
+            caber bem na tela em zoom 100% — sem “truque” de escala que o usuário desfaz no
+            navegador.
+          </p>
+
+          <h3>Identidade visual oficial</h3>
+          <p>
+            Cores, tipografia e logomarca seguem o material institucional do Iprevicon (azul
+            profundo, laranja de destaque e fundo creme). O portal precisa parecer o Instituto,
+            não um produto de tecnologia qualquer.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Acessibilidade — o que isso significa na prática</h2>
+          <p>
+            Acessibilidade não é um “extra”: é o mínimo para um órgão público atender pessoas com
+            diferentes idades, aparelhos e condições de visão ou mobilidade.
+          </p>
+          <div class="grid two">
+            <div class="card">
+              <strong>Leitura e contraste</strong>
+              <p>Textos legíveis, contraste adequado e hierarquia clara de títulos.</p>
+            </div>
+            <div class="card">
+              <strong>Teclado e foco</strong>
+              <p>É possível navegar sem mouse; o foco nos botões e links fica visível.</p>
+            </div>
+            <div class="card">
+              <strong>Atalho para o conteúdo</strong>
+              <p>“Ir para o conteúdo” no início da página ajuda quem usa leitor de tela.</p>
+            </div>
+            <div class="card">
+              <strong>Respeito ao movimento</strong>
+              <p>
+                Quem configura o aparelho para reduzir animações vê menos movimento — e o
+                conteúdo continua completo.
+              </p>
+            </div>
+            <div class="card">
+              <strong>Áreas de toque</strong>
+              <p>Botões e itens de menu com tamanho confortável no celular.</p>
+            </div>
+            <div class="card">
+              <strong>Linguagem clara</strong>
+              <p>Evitar jargão técnico nas páginas públicas; explicar o próximo passo.</p>
+            </div>
+          </div>
+          <p style="margin-top: 1.25rem">
+            Referências usadas como guia: boas práticas de HTML semântico, recomendações de
+            contraste e foco, e o princípio de que o site público deve funcionar bem também em
+            conexões e aparelhos modestos.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Tecnologias escolhidas (e por quê)</h2>
+          <p>
+            A equipe técnica escolheu uma stack moderna, estável e adequada a um portal
+            institucional hospedado na infraestrutura já usada pelo Instituto.
+          </p>
+          <div class="pill-row" aria-label="Tecnologias">
+            <span class="pill">Next.js (site moderno)</span>
+            <span class="pill">TypeScript</span>
+            <span class="pill">Tailwind CSS</span>
+            <span class="pill">SQLite (dados locais)</span>
+            <span class="pill">Docker na VPS</span>
+          </div>
+
+          <h3>Por que essas escolhas</h3>
+          <ul>
+            <li>
+              <strong>Next.js</strong> — páginas rápidas, organização clara e boa base para
+              evoluir (novas seções, área de publicação).
+            </li>
+            <li>
+              <strong>TypeScript</strong> — menos erro humano no código; mais segurança ao
+              alterar o portal no futuro.
+            </li>
+            <li>
+              <strong>SQLite</strong> — banco leve para notícias e documentos, sem a complexidade
+              de um servidor de banco grande nesta fase.
+            </li>
+            <li>
+              <strong>Docker</strong> — o portal sobe de forma padronizada na VPS, na porta
+              <strong>3090</strong>, sem conflitar com os outros sistemas já publicados no mesmo
+              servidor.
+            </li>
+          </ul>
+          <p>
+            Em linguagem simples: usamos ferramentas que entregam um site profissional,
+            manuteníveis pela equipe de TI e compatíveis com a VPS que o Instituto já opera.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Integrações — o que já está preparado</h2>
+          <h3>Área do Segurado</h3>
+          <p>
+            A página <strong>Área do Segurado</strong> funciona como ponte: explica o que a pessoa
+            encontra no sistema autenticado e encaminha para o endereço oficial configurado
+            (variável de ambiente / configuração do portal).
+          </p>
+          <ul>
+            <li>O login e os dados pessoais <strong>não ficam</strong> neste portal.</li>
+            <li>Quando o sistema do segurado estiver com a URL definitiva, basta configurar o
+              endereço — sem redesenhar o site.</li>
+          </ul>
+
+          <h3>Outros sistemas da VPS</h3>
+          <p>
+            A VPS já hospeda vários serviços (em portas diferentes). O portal Iprevicon foi
+            publicado na <strong>3090</strong> justamente para conviver com essa malha sem
+            interferir nos demais.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Próximos passos — postagens e gestão de conteúdo</h2>
+          <p>
+            Hoje o portal já tem estrutura de dados para notícias, documentos de transparência,
+            legislação e serviços. A <strong>área administrativa (CMS)</strong> — para a equipe
+            publicar e editar pelo navegador, com login — foi conscientemente deixada para depois
+            da validação institucional do visual e dos fluxos.
+          </p>
+          <ol class="steps">
+            <li>
+              <strong>Validação deste portal</strong> pela direção e áreas envolvidas (conteúdo,
+              tom de voz, caminhos).
+            </li>
+            <li>
+              <strong>Configuração da URL</strong> oficial da Área do Segurado, quando disponível.
+            </li>
+            <li>
+              <strong>Painel de publicação</strong> (CMS): cadastrar notícias, PDFs de
+              transparência e atualizar textos com perfil autorizado.
+            </li>
+            <li>
+              <strong>Rotina editorial</strong>: quem publica, quem revisa, com que frequência.
+            </li>
+            <li>
+              <strong>Domínio e certificado HTTPS</strong> (endereço com nome do Instituto, não
+              só IP e porta), quando a infraestrutura avançar.
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>8. O que o cidadão encontra hoje</h2>
+          <div class="grid two">
+            <div class="card">
+              <strong>Início</strong>
+              <p>Apresentação, atalhos, serviços, notícias e chamada institucional.</p>
+            </div>
+            <div class="card">
+              <strong>Institucional</strong>
+              <p>Quem somos, missão, visão, valores e governança em linguagem clara.</p>
+            </div>
+            <div class="card">
+              <strong>Serviços</strong>
+              <p>Carta de serviços, prova de vida, CTC e caminhos para o segurado.</p>
+            </div>
+            <div class="card">
+              <strong>Transparência</strong>
+              <p>Documentos públicos do RPPS organizados para consulta.</p>
+            </div>
+            <div class="card">
+              <strong>Notícias e Legislação</strong>
+              <p>Comunicados e base normativa de apoio ao cidadão.</p>
+            </div>
+            <div class="card">
+              <strong>Contato</strong>
+              <p>Canais oficiais e formulário de encaminhamento.</p>
+            </div>
+          </div>
+
+          <div class="url-box">
+            <p>Endereço atual na VPS</p>
+            <a href="http://31.97.167.75:3090" target="_blank" rel="noopener noreferrer"
+              >http://31.97.167.75:3090</a
+            >
+          </div>
+          <p class="print-hint">
+            Dica: para enviar este documento por e-mail em PDF, abra no navegador e use
+            <strong>Ctrl+P</strong> → “Salvar como PDF”.
+          </p>
+        </section>
+
+        <section>
+          <h2>9. Referências e premissas</h2>
+          <ul>
+            <li>Identidade visual e logomarca oficiais do Iprevicon (brandbook / materiais do Instituto).</li>
+            <li>Caráter de portal público de RPPS: informação, transparência e encaminhamento a serviços.</li>
+            <li>Separação clara entre <em>conteúdo institucional</em> e <em>sistema autenticado do segurado</em>.</li>
+            <li>Hospedagem compartilhada na VPS existente (Docker), porta dedicada 3090.</li>
+            <li>Boas práticas de acessibilidade na web (foco, contraste, semântica, redução de movimento).</li>
+            <li>Prioridade ao uso em smartphone, sem abrir mão da qualidade no computador.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>10. Mensagem final para a equipe</h2>
+          <p>
+            Este portal foi desenhado para ser <strong>simples de usar</strong>,
+            <strong>fiel à marca</strong> e <strong>pronto para evoluir</strong> — com publicações
+            e integrações — depois que a casa estiver alinhada sobre o conteúdo e a experiência.
+          </p>
+          <p>
+            Qualquer ajuste de texto, ordem de menus ou novos documentos pode ser planejado em
+            cima desta base. O próximo grande passo, após a aprovação, é o painel para a própria
+            equipe do Iprevicon publicar com autonomia.
+          </p>
+          <div class="intro-note">
+            <p>
+              Em caso de dúvidas sobre conteúdo institucional ou validação de informações
+              públicas, o alinhamento deve ser feito com a direção e as áreas responsáveis do
+              Instituto antes da publicação definitiva em domínio oficial.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="doc-foot">
+      <p>
+        <strong>Iprevicon</strong> — Instituto de Previdência de Contagem<br />
+        Apresentação do portal institucional · Setembro de 2026
+      </p>
+    </footer>
+  </body>
+</html>
