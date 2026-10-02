@@ -3,7 +3,11 @@ import path from "path";
 
 const projectRoot = path.join(__dirname);
 
+/** Prefixo público atrás de reverse proxy (ex.: /iprevicon). Vazio = raiz. */
+const basePath = (process.env.BASE_PATH || "").replace(/\/$/, "");
+
 const nextConfig: NextConfig = {
+  ...(basePath ? { basePath } : {}),
   // Standalone só no build Docker (local continua com `next start`)
   ...(process.env.DOCKER_BUILD === "1" ? { output: "standalone" as const } : {}),
   // Força a raiz do projeto (evita conflitar com package-lock.json na pasta do usuário)

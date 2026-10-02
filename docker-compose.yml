@@ -1,11 +1,7 @@
-# Portal Iprevicon — VPS Hostinger (São Paulo)
-# URL: http://31.97.167.75:3090
+# Portal Iprevicon — produção atrás de reverse proxy
 #
-#   cp .env.example .env
-#   docker-compose up -d --build
-#   docker-compose logs -f portal
-
-version: "3.8"
+#   cp .env.example .env   # ajuste BASE_PATH / SEGURADO_*
+#   docker compose up -d --build
 
 services:
   portal:
@@ -13,13 +9,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        BASE_PATH: ${BASE_PATH:-}
     ports:
-      # Host 3090 → container 3000
-      - "3090:3000"
+      - "127.0.0.1:${HOST_PORT:-3000}:3000"
     environment:
       NODE_ENV: production
       PORT: "3000"
       HOSTNAME: "0.0.0.0"
+      BASE_PATH: ${BASE_PATH:-}
       NODE_OPTIONS: --max-old-space-size=256
       SEGURADO_SYSTEM_URL: ${SEGURADO_SYSTEM_URL:-}
       SEGURADO_SYSTEM_NAME: ${SEGURADO_SYSTEM_NAME:-Sistema do Segurado}
@@ -27,11 +25,17 @@ services:
       - ./data:/app/data
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/"]
+      test:
+        [
+          "CMD",
+          "wget",
+          "-qO-",
+          "http://127.0.0.1:3000${BASE_PATH:-}/",
+        ]
       interval: 30s
       timeout: 5s
       retries: 3
-      start_period: 25s
+      start_period: 40s
     logging:
       driver: json-file
       options:
