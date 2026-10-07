@@ -63,6 +63,12 @@ function ensureSchema(db: Database.Database) {
       value TEXT NOT NULL
     );
   `);
+
+  // Migração leve: anexo em notícias
+  const newsCols = db.prepare(`PRAGMA table_info(news)`).all() as Array<{ name: string }>;
+  if (!newsCols.some((c) => c.name === "file_url")) {
+    db.exec(`ALTER TABLE news ADD COLUMN file_url TEXT`);
+  }
 }
 
 function seedIfEmpty(db: Database.Database) {

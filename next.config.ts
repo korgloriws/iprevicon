@@ -6,6 +6,8 @@ const projectRoot = path.join(__dirname);
 /** Prefixo público atrás de reverse proxy (ex.: /iprevicon). Vazio = raiz. */
 const basePath = (process.env.BASE_PATH || "").replace(/\/$/, "");
 
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
   ...(basePath ? { basePath } : {}),
   // Standalone só no build Docker (local continua com `next start`)
@@ -13,13 +15,15 @@ const nextConfig: NextConfig = {
   // Força a raiz do projeto (evita conflitar com package-lock.json na pasta do usuário)
   outputFileTracingRoot: projectRoot,
   serverExternalPackages: ["better-sqlite3"],
+  // Acesso via IP na rede local (dev) — evita CSS/JS de /_next bloqueados
+  allowedDevOrigins: ["10.131.1.227", "127.0.0.1", "localhost"],
   poweredByHeader: false,
   compress: true,
   images: {
     unoptimized: true,
   },
   async headers() {
-    return [
+    const security = [
       {
         source: "/:path*",
         headers: [
@@ -44,12 +48,22 @@ const nextConfig: NextConfig = {
               "form-action 'self'",
             ].join("; "),
           },
-          {
-            key: "Strict-Transport-Security",
-            value: "max-age=31536000; includeSubDomains",
-          },
+          ...(isProd
+            ? [
+                {
+                  key: "Strict-Transport-Security",
+                  value: "max-age=31536000; includeSubDomains",
+                },
+              ]
+            : []),
         ],
       },
+    ];
+
+    if (!isProd) return security;
+
+    return [
+      ...security,
       {
         source: "/logo/:path*",
         headers: [

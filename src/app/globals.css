@@ -531,3 +531,95 @@
     display: none;
   }
 }
+
+/* Editor admin (TipTap) + conteúdo rico público */
+.prose-admin {
+  color: var(--color-ink);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.prose-admin p {
+  margin: 0 0 0.85rem;
+}
+
+.prose-admin h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--color-primary);
+  margin: 1.1rem 0 0.5rem;
+}
+
+.prose-admin h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--color-primary);
+  margin: 1rem 0 0.4rem;
+}
+
+.prose-admin ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0 0 0.85rem;
+}
+
+.prose-admin ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+  margin: 0 0 0.85rem;
+}
+
+.prose-admin a {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+.prose-admin blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 0.85rem;
+  margin: 0.85rem 0;
+  color: var(--color-muted);
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: color-mix(in srgb, var(--color-muted) 70%, white);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.rich-content p {
+  margin: 0 0 0.85rem;
+}
+
+.rich-content h2,
+.rich-content h3,
+.rich-content h4 {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  margin: 1.1rem 0 0.5rem;
+}
+
+.rich-content ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0 0 0.85rem;
+}
+
+.rich-content ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+  margin: 0 0 0.85rem;
+}
+
+.rich-content a {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+.rich-content blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 0.85rem;
+  margin: 0.85rem 0;
+}

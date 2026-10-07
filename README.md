@@ -53,7 +53,22 @@ docker compose up -d --build
 ## Dados
 
 - Públicos em SQLite: `data/iprevicon.db`
+- Uploads (PDF): `data/uploads/`
 - Área do Segurado via `SEGURADO_SYSTEM_URL` (sistema externo)
+
+## Painel administrativo (`/admin`)
+
+CRUD de notícias, transparência e legislação, com upload de PDF.
+
+No `.env`:
+
+```bash
+ADMIN_USER=admin
+ADMIN_PASSWORD=senha-forte
+ADMIN_SESSION_SECRET=chave-longa-aleatoria
+```
+
+Acesse `/admin` (ou `/iprevicon/admin` se usar `BASE_PATH`).
 
 ## Identidade
 

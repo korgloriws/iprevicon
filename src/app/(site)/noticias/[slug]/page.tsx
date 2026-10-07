@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BackNav } from "@/components/BackNav";
 import { formatDate, getNewsBySlug, listNews } from "@/lib/content";
+import { withBasePath } from "@/lib/paths";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -40,11 +41,21 @@ export default async function NoticiaPage({ params }: Props) {
       <h1 className="mt-3 font-display text-3xl font-semibold leading-tight text-primary text-balance sm:text-4xl lg:text-[1.85rem]">
         {item.title}
       </h1>
-      <div className="mt-6 space-y-4 text-base leading-relaxed text-muted sm:text-lg lg:text-base">
-        {item.body.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
-      </div>
+      <div
+        className="rich-content mt-6 text-base leading-relaxed text-muted sm:text-lg lg:text-base"
+        dangerouslySetInnerHTML={{ __html: item.bodyHtml }}
+      />
+
+      {item.file_url ? (
+        <a
+          href={withBasePath(item.file_url)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-flex min-h-12 items-center rounded-full border-2 border-primary/20 bg-white px-5 py-2.5 text-base font-bold text-primary"
+        >
+          Baixar / abrir anexo
+        </a>
+      ) : null}
 
       {related.length > 0 ? (
         <aside className="mt-14 border-t border-primary/10 pt-8">

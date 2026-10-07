@@ -2,7 +2,7 @@
   "name": "portal-iprevicon",
   "version": "0.1.0",
   "private": true,
-    "scripts": {
+  "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "better-sqlite3": "^13.0.3",
+    "isomorphic-dompurify": "^3.19.0",
+    "marked": "^18.1.0",
     "next": "^15.5.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"

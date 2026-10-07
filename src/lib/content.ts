@@ -1,4 +1,5 @@
 import { getDb } from "@/lib/db";
+import { bodyToEditableHtml, sanitizeHtml } from "@/lib/html";
 
 export type NewsItem = {
   id: number;
@@ -6,8 +7,12 @@ export type NewsItem = {
   title: string;
   excerpt: string;
   category: string;
+  /** HTML sanitizado para exibição */
+  bodyHtml: string;
+  /** Compatível com listagens antigas (parágrafos em texto) */
   body: string[];
   published_at: string;
+  file_url: string | null;
 };
 
 export type TransparencyDoc = {
@@ -16,6 +21,7 @@ export type TransparencyDoc = {
   title: string;
   category: string;
   description: string;
+  descriptionHtml: string;
   file_url: string | null;
   updated_at: string;
 };
@@ -24,6 +30,7 @@ export type LegislationItem = {
   id: number;
   title: string;
   detail: string;
+  detailHtml: string;
   file_url: string | null;
 };
 
@@ -42,21 +49,39 @@ type NewsRow = {
   category: string;
   body: string;
   published_at: string;
+  file_url?: string | null;
 };
 
+function htmlToPlainParagraphs(html: string): string[] {
+  const plain = sanitizeHtml(html)
+    .replace(/<\/(p|h[1-6]|li|div|blockquote)>/gi, "\n")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .split(/\n+/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+  return plain.length ? plain : [""];
+}
+
 function mapNews(row: NewsRow): NewsItem {
-  let body: string[] = [];
-  try {
-    body = JSON.parse(row.body) as string[];
-  } catch {
-    body = [row.body];
-  }
-  return { ...row, body };
+  const bodyHtml = bodyToEditableHtml(row.body);
+  return {
+    id: row.id,
+    slug: row.slug,
+    title: row.title,
+    excerpt: row.excerpt,
+    category: row.category,
+    bodyHtml,
+    body: htmlToPlainParagraphs(bodyHtml),
+    published_at: row.published_at,
+    file_url: row.file_url ?? null,
+  };
 }
 
 export function listNews(limit?: number): NewsItem[] {
   const db = getDb();
-  const base = `SELECT id, slug, title, excerpt, category, body, published_at
+  const base = `SELECT id, slug, title, excerpt, category, body, published_at, file_url
      FROM news
      WHERE is_published = 1
      ORDER BY published_at DESC`;
@@ -70,7 +95,7 @@ export function getNewsBySlug(slug: string): NewsItem | null {
   const db = getDb();
   const row = db
     .prepare(
-      `SELECT id, slug, title, excerpt, category, body, published_at
+      `SELECT id, slug, title, excerpt, category, body, published_at, file_url
        FROM news WHERE slug = ? AND is_published = 1`,
     )
     .get(slug) as NewsRow | undefined;
@@ -79,26 +104,57 @@ export function getNewsBySlug(slug: string): NewsItem | null {
 
 export function listTransparencyDocs(): TransparencyDoc[] {
   const db = getDb();
-  return db
+  const rows = db
     .prepare(
       `SELECT id, code, title, category, description, file_url, updated_at
        FROM transparency_docs
        WHERE is_published = 1
        ORDER BY sort_order ASC, updated_at DESC`,
     )
-    .all() as TransparencyDoc[];
+    .all() as Array<{
+    id: number;
+    code: string;
+    title: string;
+    category: string;
+    description: string;
+    file_url: string | null;
+    updated_at: string;
+  }>;
+
+  return rows.map((row) => {
+    const descriptionHtml = bodyToEditableHtml(row.description);
+    return {
+      ...row,
+      descriptionHtml,
+      description: htmlToPlainParagraphs(descriptionHtml).join(" "),
+    };
+  });
 }
 
 export function listLegislation(): LegislationItem[] {
   const db = getDb();
-  return db
+  const rows = db
     .prepare(
       `SELECT id, title, detail, file_url
        FROM legislation
        WHERE is_published = 1
        ORDER BY sort_order ASC`,
     )
-    .all() as LegislationItem[];
+    .all() as Array<{
+    id: number;
+    title: string;
+    detail: string;
+    file_url: string | null;
+  }>;
+
+  return rows.map((row) => {
+    const detailHtml = bodyToEditableHtml(row.detail);
+    return {
+      ...row,
+      detailHtml,
+      detail: htmlToPlainParagraphs(detailHtml).join(" "),
+    };
+  });
 }
 
 export function listServices(): ServiceItem[] {

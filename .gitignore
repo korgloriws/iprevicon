@@ -39,9 +39,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local sqlite
+# local sqlite + uploads
 /data/*.db
 /data/*.db-*
+/data/uploads/**
+!/data/uploads/.gitkeep
+!/data/uploads/**/.gitkeep
 
 # brand assets locais (logo oficial já está em public/logo)
 /Brandbook*

@@ -2,6 +2,7 @@
 import { PageEndNav } from "@/components/PageEndNav";
 import { PageHero } from "@/components/PageHero";
 import { formatDate, listTransparencyDocs } from "@/lib/content";
+import { withBasePath } from "@/lib/paths";
 
 export const metadata: Metadata = {
   title: "Transparência",
@@ -40,12 +41,15 @@ export default function TransparenciaPage() {
                 <h2 className="mt-1 font-display text-xl font-semibold text-primary md:text-2xl">
                   {doc.title}
                 </h2>
-                <p className="mt-2 max-w-2xl text-base text-muted">{doc.description}</p>
+                <div
+                  className="rich-content mt-2 max-w-2xl text-base text-muted"
+                  dangerouslySetInnerHTML={{ __html: doc.descriptionHtml }}
+                />
                 <p className="mt-2 text-sm text-muted">Atualizado em {formatDate(doc.updated_at)}</p>
               </div>
               {doc.file_url ? (
                 <a
-                  href={doc.file_url}
+                  href={withBasePath(doc.file_url)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex min-h-12 shrink-0 items-center rounded-full border-2 border-primary/20 bg-white px-5 py-2.5 text-base font-bold text-primary transition hover:bg-cream-muted"

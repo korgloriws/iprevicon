@@ -21,6 +21,9 @@ services:
       NODE_OPTIONS: --max-old-space-size=256
       SEGURADO_SYSTEM_URL: ${SEGURADO_SYSTEM_URL:-}
       SEGURADO_SYSTEM_NAME: ${SEGURADO_SYSTEM_NAME:-Sistema do Segurado}
+      ADMIN_USER: ${ADMIN_USER:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-changeme}
+      ADMIN_SESSION_SECRET: ${ADMIN_SESSION_SECRET:-troque-admin-session-secret}
     volumes:
       - ./data:/app/data
     restart: unless-stopped
