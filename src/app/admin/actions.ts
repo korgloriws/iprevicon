@@ -24,7 +24,6 @@ import {
   adminUpdateTransparency,
 } from "@/lib/admin";
 import { isRichHtmlEmpty, normalizeRichContent } from "@/lib/html";
-import { withBasePath } from "@/lib/paths";
 import { deleteUploadByUrl, saveUploadedFile } from "@/lib/uploads";
 
 function boolFromForm(value: FormDataEntryValue | null) {
@@ -47,12 +46,13 @@ export async function loginAction(formData: FormData) {
   const user = String(formData.get("user") || "");
   const password = String(formData.get("password") || "");
   if (!verifyAdminCredentials(user, password)) {
-    redirect(withBasePath("/admin/login?erro=1"));
+    redirect("/admin/login?erro=1");
   }
   const token = createSessionToken(user);
   const jar = await cookies();
   jar.set(sessionCookieOptions(token));
-  redirect(withBasePath("/admin"));
+  // next.config basePath já prefixa o redirect — não usar withBasePath aqui
+  redirect("/admin");
 }
 
 export async function saveNewsAction(formData: FormData) {
@@ -91,7 +91,7 @@ export async function saveNewsAction(formData: FormData) {
 
   revalidatePublic();
   revalidatePath("/admin/noticias");
-  redirect(withBasePath("/admin/noticias"));
+  redirect("/admin/noticias");
 }
 
 export async function deleteNewsAction(formData: FormData) {
@@ -102,7 +102,7 @@ export async function deleteNewsAction(formData: FormData) {
   adminDeleteNews(id);
   revalidatePublic();
   revalidatePath("/admin/noticias");
-  redirect(withBasePath("/admin/noticias"));
+  redirect("/admin/noticias");
 }
 
 export async function saveTransparencyAction(formData: FormData) {
@@ -142,7 +142,7 @@ export async function saveTransparencyAction(formData: FormData) {
 
   revalidatePublic();
   revalidatePath("/admin/transparencia");
-  redirect(withBasePath("/admin/transparencia"));
+  redirect("/admin/transparencia");
 }
 
 export async function deleteTransparencyAction(formData: FormData) {
@@ -153,7 +153,7 @@ export async function deleteTransparencyAction(formData: FormData) {
   adminDeleteTransparency(id);
   revalidatePublic();
   revalidatePath("/admin/transparencia");
-  redirect(withBasePath("/admin/transparencia"));
+  redirect("/admin/transparencia");
 }
 
 export async function saveLegislationAction(formData: FormData) {
@@ -190,7 +190,7 @@ export async function saveLegislationAction(formData: FormData) {
 
   revalidatePublic();
   revalidatePath("/admin/legislacao");
-  redirect(withBasePath("/admin/legislacao"));
+  redirect("/admin/legislacao");
 }
 
 export async function deleteLegislationAction(formData: FormData) {
@@ -201,5 +201,5 @@ export async function deleteLegislationAction(formData: FormData) {
   adminDeleteLegislation(id);
   revalidatePublic();
   revalidatePath("/admin/legislacao");
-  redirect(withBasePath("/admin/legislacao"));
+  redirect("/admin/legislacao");
 }

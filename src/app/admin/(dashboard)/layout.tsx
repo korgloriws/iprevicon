@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { ADMIN_COOKIE, getAdminSession, sessionCookieOptions } from "@/lib/auth";
-import { withBasePath } from "@/lib/paths";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +10,7 @@ export default async function AdminDashboardLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const user = await getAdminSession();
   if (!user) {
-    redirect(withBasePath("/admin/login"));
+    redirect("/admin/login");
   }
 
   async function logout() {
@@ -19,7 +18,7 @@ export default async function AdminDashboardLayout({
     const jar = await cookies();
     jar.set({ ...sessionCookieOptions(""), maxAge: 0, value: "" });
     jar.delete(ADMIN_COOKIE);
-    redirect(withBasePath("/admin/login"));
+    redirect("/admin/login");
   }
 
   return (

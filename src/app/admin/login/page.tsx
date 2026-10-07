@@ -1,13 +1,12 @@
 import { redirect } from "next/navigation";
 import { getAdminSession } from "@/lib/auth";
-import { withBasePath } from "@/lib/paths";
 import { loginAction } from "@/app/admin/actions";
 
 type Props = { searchParams: Promise<{ erro?: string }> };
 
 export default async function AdminLoginPage({ searchParams }: Props) {
   const user = await getAdminSession();
-  if (user) redirect(withBasePath("/admin"));
+  if (user) redirect("/admin");
 
   const params = await searchParams;
   const erro = params.erro === "1";
