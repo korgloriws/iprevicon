@@ -1,0 +1,4 @@
+# Garante LF nos scripts usados no Linux/Docker (evita erro de shebang no Alpine)
+*.sh text eol=lf
+Dockerfile text eol=lf
+docker-compose.yml text eol=lf
