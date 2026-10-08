@@ -1,21 +1,28 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Anek_Devanagari, Montserrat } from "next/font/google";
+import localFont from "next/font/local";
 // @ts-ignore - global CSS import is handled by Next.js
 import "./globals.css";
 
-const anek = Anek_Devanagari({
-  subsets: ["latin"],
+const anek = localFont({
+  src: [
+    { path: "../fonts/anek-devanagari-latin-500-normal.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/anek-devanagari-latin-600-normal.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/anek-devanagari-latin-700-normal.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-anek",
   display: "swap",
-  weight: ["500", "600", "700"],
 });
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
+const montserrat = localFont({
+  src: [
+    { path: "../fonts/montserrat-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/montserrat-latin-500-normal.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/montserrat-latin-600-normal.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/montserrat-latin-700-normal.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-montserrat",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
