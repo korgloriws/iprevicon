@@ -1,6 +1,6 @@
 import Link from "next/link";
+import { AdminFileField } from "@/components/admin/AdminFileField";
 import { RichTextEditor } from "@/components/admin/RichTextEditor";
-import { withBasePath } from "@/lib/paths";
 
 type Props = {
   action: (formData: FormData) => void | Promise<void>;
@@ -47,33 +47,7 @@ export function LegislationForm({ action, initial }: Props) {
         />
       </label>
 
-      <label className="block text-sm font-semibold text-primary">
-        Arquivo (PDF ou imagem, até 20 MB)
-        <input
-          type="file"
-          name="file"
-          accept=".pdf,application/pdf,image/*"
-          className="mt-1.5 block w-full text-sm"
-        />
-      </label>
-
-      {initial?.file_url ? (
-        <div className="rounded-xl bg-cream-muted px-4 py-3 text-sm">
-          <p className="font-semibold text-primary">Arquivo atual</p>
-          <a
-            href={withBasePath(initial.file_url)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-secondary underline"
-          >
-            Abrir arquivo
-          </a>
-          <label className="mt-2 flex items-center gap-2 font-semibold text-primary">
-            <input type="checkbox" name="remove_file" className="size-4" />
-            Remover arquivo ao salvar
-          </label>
-        </div>
-      ) : null}
+      <AdminFileField currentFileUrl={initial?.file_url} />
 
       <label className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
         <input

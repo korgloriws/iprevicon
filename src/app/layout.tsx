@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Anek_Devanagari, Montserrat } from "next/font/google";
 // @ts-ignore - global CSS import is handled by Next.js
 import "./globals.css";
@@ -31,6 +32,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="pt-BR">
       <body className={`${anek.variable} ${montserrat.variable} flex min-h-screen flex-col`}>
         {children}
+        {/* VLibras v7 — inicializa sozinho ao carregar o script oficial */}
+        <Script
+          src="https://vlibras.gov.br/app/vlibras-plugin.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

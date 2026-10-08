@@ -3,18 +3,25 @@ import { NewsCarousel } from "@/components/NewsCarousel";
 import { Reveal } from "@/components/Reveal";
 import { listNews, type NewsItem } from "@/lib/content";
 
+const PROVA_DE_VIDA_GOV_URL =
+  "https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br/prova-de-vida/";
+
 const homeServices = [
   {
     id: 1,
     title: "Contracheque",
     description: "Consulta ao contracheque — serviço em construção.",
     href: "/servicos#contracheque",
+    external: false,
+    badge: "Em construção",
   },
   {
     id: 2,
     title: "Prova de vida",
-    description: "Comprovação anual de vida — serviço em construção.",
-    href: "/servicos#prova-de-vida",
+    description: "Comprovação de vida pelos canais oficiais do GOV.BR.",
+    href: PROVA_DE_VIDA_GOV_URL,
+    external: true,
+    badge: "GOV.BR",
   },
 ];
 
@@ -83,22 +90,25 @@ export function HomeHero() {
 
 export function QuickAccess() {
   const items = [
-    { href: "/servicos#contracheque", label: "Contracheque", detail: "Em construção" },
-    { href: "/servicos#prova-de-vida", label: "Prova de vida", detail: "Em construção" },
-    { href: "/transparencia", label: "Transparência", detail: "Receitas, despesas e contas" },
-    { href: "/ouvidoria", label: "Ouvidoria", detail: "WhatsApp e satisfação" },
+    { href: "/servicos#contracheque", label: "Contracheque", detail: "Em construção", external: false },
+    {
+      href: PROVA_DE_VIDA_GOV_URL,
+      label: "Prova de vida",
+      detail: "GOV.BR",
+      external: true,
+    },
+    { href: "/transparencia", label: "Transparência", detail: "Receitas, despesas e contas", external: false },
+    { href: "/ouvidoria", label: "Ouvidoria", detail: "WhatsApp e satisfação", external: false },
   ];
 
   return (
     <section className="border-b border-primary/10 bg-cream" aria-label="Acesso rápido">
       <div className="stagger mx-auto grid max-w-[56rem] gap-px bg-primary/10 sm:grid-cols-2 lg:grid-cols-4">
-        {items.map((item, index) => (
-          <Reveal key={item.href} className="h-full">
-            <Link
-              href={item.href}
-              className="group relative flex h-full min-h-[8.5rem] flex-col justify-center overflow-hidden bg-cream px-5 py-7 transition duration-300 hover:bg-cream-muted active:bg-cream-muted lg:min-h-[6.75rem] lg:px-4 lg:py-5"
-              style={{ transitionDelay: `${index * 40}ms` }}
-            >
+        {items.map((item, index) => {
+          const className =
+            "group relative flex h-full min-h-[8.5rem] flex-col justify-center overflow-hidden bg-cream px-5 py-7 transition duration-300 hover:bg-cream-muted active:bg-cream-muted lg:min-h-[6.75rem] lg:px-4 lg:py-5";
+          const content = (
+            <>
               <span className="absolute inset-x-0 bottom-0 h-0 bg-accent/10 transition-all duration-300 group-hover:h-full group-active:h-full" />
               <span className="absolute left-0 top-0 h-full w-0 bg-accent transition-all duration-300 group-hover:w-1 group-active:w-1" />
               <p className="relative font-display text-2xl font-semibold text-primary transition-colors group-hover:text-secondary group-active:text-secondary lg:text-xl">
@@ -107,9 +117,33 @@ export function QuickAccess() {
               <p className="relative mt-2 min-h-[2.75rem] text-base leading-snug text-muted lg:min-h-0 lg:text-sm">
                 {item.detail}
               </p>
-            </Link>
-          </Reveal>
-        ))}
+            </>
+          );
+
+          return (
+            <Reveal key={item.href} className="h-full">
+              {item.external ? (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={className}
+                  style={{ transitionDelay: `${index * 40}ms` }}
+                >
+                  {content}
+                </a>
+              ) : (
+                <Link
+                  href={item.href}
+                  className={className}
+                  style={{ transitionDelay: `${index * 40}ms` }}
+                >
+                  {content}
+                </Link>
+              )}
+            </Reveal>
+          );
+        })}
       </div>
     </section>
   );
@@ -134,27 +168,51 @@ export function ServicesPreview({ services }: { services: ServiceItem[] }) {
         </Reveal>
 
         <div className="stagger mt-10 grid gap-7 md:grid-cols-2 lg:mt-8 lg:gap-6">
-          {services.map((service) => (
-            <Reveal key={service.id}>
-              <Link
-                href={service.href}
-                className="group touch-lift block border-t border-primary/15 pt-4 transition duration-300 hover:-translate-y-1 active:-translate-y-1"
-              >
+          {services.map((service) => {
+            const className =
+              "group touch-lift block border-t border-primary/15 pt-4 transition duration-300 hover:-translate-y-1 active:-translate-y-1";
+            const content = (
+              <>
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="font-display text-xl font-semibold text-primary transition-colors group-hover:text-accent group-active:text-accent lg:text-lg">
                     {service.title}
                   </h3>
-                  <span className="rounded-full border border-primary/15 bg-cream-muted px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wider text-muted">
-                    Em construção
+                  <span
+                    className={
+                      service.external
+                        ? "rounded-full border border-secondary/20 bg-secondary/10 px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wider text-secondary"
+                        : "rounded-full border border-primary/15 bg-cream-muted px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wider text-muted"
+                    }
+                  >
+                    {service.badge}
                   </span>
                 </div>
                 <p className="mt-2 text-base leading-relaxed text-muted lg:text-sm">{service.description}</p>
                 <span className="hover-reveal mt-3 text-sm font-semibold text-secondary">
-                  Ver detalhes →
+                  {service.external ? "Abrir no GOV.BR →" : "Ver detalhes →"}
                 </span>
-              </Link>
-            </Reveal>
-          ))}
+              </>
+            );
+
+            return (
+              <Reveal key={service.id}>
+                {service.external ? (
+                  <a
+                    href={service.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={className}
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <Link href={service.href} className={className}>
+                    {content}
+                  </Link>
+                )}
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

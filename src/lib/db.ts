@@ -269,8 +269,8 @@ function seedIfEmpty(db: Database.Database) {
     },
     {
       title: "Prova de vida",
-      description: "Comprovação anual de vida — serviço em construção.",
-      href: "/servicos#prova-de-vida",
+      description: "Comprovação de vida pelos canais oficiais do GOV.BR.",
+      href: "https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br/prova-de-vida/",
       sort_order: 2,
     },
   ];
